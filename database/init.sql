@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS documents (
     file_size INTEGER,
     upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     processed BOOLEAN DEFAULT FALSE,
-    metadata JSONB
+    metadata_ JSONB
 );
 
 -- Create chunks table with vector embeddings
@@ -18,8 +18,8 @@ CREATE TABLE IF NOT EXISTS document_chunks (
     document_id INTEGER REFERENCES documents(id) ON DELETE CASCADE,
     chunk_index INTEGER NOT NULL,
     content TEXT NOT NULL,
-    embedding vector(1536),  -- Adjust dimension based on your embedding model
-    metadata JSONB,
+    embedding vector(1024),  -- Adjust dimension based on your embedding model
+    metadata_ JSONB,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
